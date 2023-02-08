@@ -1,0 +1,42 @@
+.header_searchwork{margin:0 0 0 -44px !important;justify-content: right !important;}
+     .select_budget{padding:0 15px;}
+	.upload__img-box {float: left;width: 10%;border-radius: 10px;margin-top: 8px; margin-bottom: 10px;}
+	.dream {margin-left: 0 !important;      margin-right: 0 !important; }
+	.dream-star { padding-bottom: 3px;padding-left: 17px; float: left;} 
+	.main-img {float: left;}
+	label.upload__btn { font-size: 30px;    border: 1px solid #D2D2D2;    padding: 16px;     width: 77px;    height: 85px;    text-align: center;     border-radius: 5px;    float: left;}
+	.upload__img-box {float: left;width: 10%;border-radius: 10px;margin-top: 8px; margin-bottom: 10px;}
+	.profile-mid-content, .fl-sm {display: flex; }
+	.field_wrapper {position: relative;    float: left;    width: 100%;    margin-top: 20px;}
+	button.btn.btn-success.btn-approve {float: left;
+    width: 30%;
+    margin: 0px auto;
+    margin-top: 22px;
+    border-radius: 5px;
+    border: none;}
+	input.addon1 { height:40px; width: 80%; border-right: unset;border-radius: unset;}
+	input.addon2 { height:40px;width: 20%;border-left: unset;border-radius: unset;}
+ 	label.lst-plus {width: 100%;}
+	i.fa-solid.fa-plus {top: unset;left: 96%;margin-top: 13px;position: absolute;}
+	i.fa-solid.fa-minus {top: unset;left: 96%;margin-top: 15px; color: #808080;}
+	.fa-plus:before {color: #000 !important;}
+    i.fa-solid.fa-minus {right: 0;position: absolute;}
+.addonss {margin-top: 12px;}
+.col-md-6 {padding: 0 !important;}
+
+.addonss {float: left; width: 100%; margin-top: 15px;}
+@media (min-width:0) and (max-width:567px){
+    .col-md-6 {padding: 0 !important;}
+    i.fa-solid.fa-plus { left: 92%;}
+    i.fa-solid.fa-minus {left: 92%;color: #808080;}
+input.addon2 {height: 40px;}
+form.service-form{padding:0;}
+.col-lg-9 {width: 100%; padding:0;}
+.select_budget {
+    padding: 0 !important;
+}
+.col-lg-9.col-md-9 {padding: 0 !important; }
+.row {
+    flex-direction: column;
+}
+}
