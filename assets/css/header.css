@@ -28,9 +28,9 @@ button:hover{text-decoration:none;}
 /*a.service-create.btn.btn-primary {padding: 0 16px !important;}*/
 ul#myTab {justify-content: center;padding: 0 0 10px 0;}
 .dots_bell-img {display: flex !important;gap: 10px !important;position:relative;padding-right: 8px;}
-i.fa-solid.fa-magnifying-glass {position: absolute;
+.top_search_head_header{position: absolute;
     z-index: 1;
-    top: 31%;
+    top: 10px;
     color: #bfbfbf;
     left: 12px;}
 .text {

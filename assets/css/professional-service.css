@@ -3,11 +3,8 @@ p.skills {
     background: #fff !important;
     padding: 8px !important;
 }
-div#log {
-    width: 200px !important;
-    display: grid;
-}
-.row{    margin-right: 0px !important;}
+
+/*.row{    margin-right: 0px !important;}*/
     .img-cir-profile 
     {
         display: flex;justify-content: space-between;

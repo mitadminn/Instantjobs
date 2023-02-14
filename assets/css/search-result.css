@@ -7,3 +7,10 @@
 .instant-main { padding-left: calc(var(--sidebar-width) + 20px);}
 .kmtrs {display: flex !important;justify-content: space-between !important; align-items: center !important;}
 }
+
+span.tag {
+    background: #fff !important;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 12px;
+}

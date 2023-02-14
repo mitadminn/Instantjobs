@@ -2,7 +2,7 @@
 div#jobdata a {text-decoration: none;}
 .p-3 {padding: 5px!important;}
 .carousel-item{background-repeat: no-repeat; background-size: cover; background-position: center;}
-#row_job{margin-right:0 !important;}
+/*#row_job{margin-right:0 !important;}*/
 @media screen and (min-width: 768px){
 .instant-main { padding-left: calc(var(--sidebar-width) + 20px);}
 .kmtrs {display: flex !important;justify-content: space-between !important; align-items: center !important;}}

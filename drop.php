@@ -8,10 +8,8 @@
     <body >
         <div class="container" >
             <div class='content'>
-            <!--<form action="upload.php" class="dropzone" id="dropzonewidget">-->
-                
-            <!--</form>  -->
-            </div> 
+  
+            </div>
         </div>
     </body>
 </html>

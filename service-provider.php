@@ -21,48 +21,39 @@ $jobads = $obj->GetJobsByAds();
             <!------------------------------------------search bar new--------------------------------------------------->
             <div class="content_sec_service">
                 <!--Carousel Start -->
-                <div class=" mid-i-p">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <?php 
-                                        $i=1;
-                                        while($row = mysqli_fetch_array($ads)){ 
-                                        $userid = $row['user_id'];
-                                        $userinfo = $obj->GetUserById($userid);
-                                        ?>
-                            <div class="carousel-item <?php if($i == 1) { echo 'active';} else {} ?> p-20"
-                                style="background-image:url(admin/assets/img/services/<?=$row['photos'];?>);">
-                                <div class="d-flex first-profl">
-                                    <div class="small-imgg">
-                                        <img class="sm-img"
-                                            src="<?php if(!empty($data['picture'])) { echo $_SESSION['user_image']; } elseif(!empty($userinfo['ProfilePic'])) { echo 'admin/assets/img/profile/'.$userinfo['ProfilePic']; }  else { echo 'assets/img/dcc2ccd9.avif'; } ?>"
-                                            alt="">
-                                        <p class="pp cl-w2 mr-in"><a href="profile?id=<?=$userid;?>">
-                                                <?=$userinfo['ProfileName'];?>
-                                            </a></p>
-                                    </div>
-                                    <div class="Sponsor">
-                                        <?php  $user_id = $_SESSION['Userid']; 
-                                					if($user_idd == $_SESSION['Userid']){	
-                                				?>
-                                        <a class="spnsr-serv-pro" href="manage-post.php">Sponsored</a>
-                                        <?php } else {	?>
-                                        <a href="create-service.php">Sponsored</a>
-                                        <?php } ?>
-
-                                    </div>
-                                    <?echo substr($row['Content'], 0, 50);?>
-                                </div>
-
-                                <p class=" tooltip pp2 cl-w2 w-75">
-                                    <?= substr($row['topic'], 0, 80);?>
-                                </p>
-
-                            </div>
-                            <?php $i++; } ?>
-                        </div>
-                    </div>
-                </div>
+                <div class="mid-i-p">
+                   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                     <div class="carousel-inner">
+                       <?php 
+                         $i=1;
+                         while($row = mysqli_fetch_array($ads)){ 
+                           $userid = $row['user_id'];
+                           $userinfo = $obj->GetUserById($userid);
+                       ?>
+                       <div class="carousel-item <?php if($i == 1) { echo 'active';} else {} ?> p-20" style="background-image:url(admin/assets/img/services/<?=$row['photos'];?>);">
+                         <div class="d-flex first-profl">
+                           <div class="small-imgg">
+                             <img class="sm-img" src="<?php if(!empty($data['picture'])) { echo $_SESSION['user_image']; } elseif(!empty($userinfo['ProfilePic'])) { echo 'admin/assets/img/profile/'.$userinfo['ProfilePic']; }  else { echo 'assets/img/dcc2ccd9.avif'; } ?>" alt="">
+                             <p class="pp cl-w2 mr-in"><a href="profile?id=<?=$userid;?>"><?=$userinfo['ProfileName'];?></a></p>
+                           </div>
+                           <div class="Sponsor">
+                             <?php  $user_id = $_SESSION['Userid']; 
+                             if($user_idd == $_SESSION['Userid']){	
+                             ?>
+                               <a class="spnsr-serv-pro" href="manage-post.php">Sponsored</a>
+                             <?php } else {	?>
+                               <a href="create-service.php">Sponsored</a>
+                             <?php } ?>
+                           </div>
+                         </div>
+                         <p class=" tooltip pp2 cl-w2 w-75">
+                           <?= substr($row['topic'], 0, 80);?>
+                         </p>
+                       </div>
+                       <?php $i++; } ?>
+                     </div>
+                   </div>
+                 </div>
                 <!--Carousel End -->
 
                 <div id="livesearch"></div>
@@ -150,81 +141,68 @@ $jobads = $obj->GetJobsByAds();
         <?php include('inc/footer.php'); ?>
 
 
-        <script>
+<script>
+  $(document).ready(function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showLocation);
+    } else {
+      $("#location").html("Geolocation is not supported by this browser.");
+    }
 
-            /* LIKE */
-            $(document).on('click', '#like', function (e) {
-                var like = $(this).attr('data-id');
-                var postid = $(this).attr('post-id');
-                var userid = <?= $user_id;?>;
-                $.ajax({
-                    type: "GET",
-                    url: "admin/inc/process.php?like=" + like + "&postid=" + postid + "&userid=" + userid,
-                    dataType: "html",
-                    success: function (data) {
-                        location.reload();
-                    }
-                });
+    /* LIKE */
+    $(document).on("click", "#like", function(e) {
+      var like = $(this).attr("data-id");
+      var postId = $(this).attr("post-id");
+      var userId = <?= $user_id; ?>;
 
+      handleLikeDislike("like", like, postId, userId);
+    });
 
+    /* DISLIKE */
+    $(document).on("click", "#dislike", function(e) {
+      var dislike = $(this).attr("data-id");
+      var postId = $(this).attr("post-id");
+      var userId = <?= $user_id; ?>;
 
-            });
+      handleLikeDislike("dislike", dislike, postId, userId);
+    });
 
-            /* DISLIKE */
-            $(document).on('click', '#dislike', function (e) {
-                var dislike = $(this).attr('data-id');
-                var postid = $(this).attr('post-id');
-                var userid = <?= $user_id;?>;
-                $.ajax({
-                    type: "GET",
-                    url: "admin/inc/process.php?dislike=" + dislike + "&postid=" + postid + "&userid=" + userid,
-                    dataType: "html",
-                    success: function (data) {
-                        location.reload();
-                    }
-                });
-            });
+    /* UPDATE DISLIKE */
+    $(document).on("click", "#updatelike", function(e) {
+      var updateLike = $(this).attr("data-id");
+      var postId = $(this).attr("post-id");
+      var userId = <?= $user_id; ?>;
 
-            /* UPDATE DISLIKE */
-            $(document).on('click', '#updatelike', function (e) {
-                var updatelike = $(this).attr('data-id');
-                var postid = $(this).attr('post-id');
-                var userid = <?= $user_id;?>;
-                $.ajax({
-                    type: "GET",
-                    url: "admin/inc/process.php?updatelike=" + updatelike + "&postid=" + postid + "&userid=" + userid,
-                    dataType: "html",
-                    success: function (data) {
-                        location.reload();
-                    }
-                });
-            });
+      handleLikeDislike("updatelike", updateLike, postId, userId);
+    });
+  });
 
+  function handleLikeDislike(type, dataId, postId, userId) {
+    $.ajax({
+      type: "GET",
+      url: `admin/inc/process.php?${type}=${dataId}&postid=${postId}&userid=${userId}`,
+      dataType: "html",
+      success: function(data) {
+        location.reload();
+      }
+    });
+  }
 
+  function showLocation(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
 
-
-            $(document).ready(function () {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showLocation);
-                } else {
-                    $('#location').html('Geolocation is not supported by this browser.');
-                }
-            });
-
-            function showLocation(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                $.ajax({
-                    type: 'POST',
-                    url: 'getLocation.php',
-                    data: 'latitude=' + latitude + '&longitude=' + longitude,
-                    success: function (msg) {
-                        if (msg) {
-                            $("#location").html(msg);
-                        } else {
-                            $("#location").html('Not Available');
-                        }
-                    }
-                });
-            }
-        </script>
+    $.ajax({
+      type: "POST",
+      url: "getLocation.php",
+      data: "latitude=" + latitude + "&longitude=" + longitude,
+      success: function(msg) {
+        if (msg) {
+          $("#location").html(msg);
+        } else {
+          $("#location").html("Not Available");
+        }
+      }
+    });
+  }
+</script>
